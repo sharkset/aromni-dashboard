@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,7 @@
     <link href="<?= base_url('template/dist/css/pages/login-register-lock.css'); ?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?= base_url('template/dist/css/style.min.css'); ?>" rel="stylesheet">
-    <title><?= $title_page; ?></title>
+    <title><?= $title; ?></title>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
