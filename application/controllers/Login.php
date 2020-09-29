@@ -10,9 +10,10 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		// Verifica se o usuário esta logado
+		/*
         if ((!session_id()) || ($this->session->userdata('logado'))) {
             redirect('dashboard');
-		}
+		}*/
 		
 		$dados['title_page'] = "Aroma Spot - Login";
 
