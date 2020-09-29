@@ -11,6 +11,6 @@ class Login extends CI_Controller {
 	{
 		$dados['title_page'] = "Aroma Spot - Login";
 
-		$this->load->view('app/paginas/login', $dados);
+		$this->load->view('app/paginas/login', $dados, TRUE);
 	}
 }
