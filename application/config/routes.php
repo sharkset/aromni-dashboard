@@ -50,5 +50,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'login';
-$route['404_override'] = '';
+$route['404_override'] = 'errors/error404';
 $route['translate_uri_dashes'] = FALSE;
+
+/* APP */
+$route['login'] = 'login/index'; // Pagina inicial
+$route['login/sair'] = 'login/sair'; // Logout
+$route['dashboard'] = 'dashboard'; // Pagina inicial
+$route['profile'] = 'profile/index'; // Pagina inicial
+$route['verificarlogin'] = 'login/verificarLogin'; // autenticação de login
+
+/** RECUPERAR SENHA */
+$route['recuperarsenha'] = 'login/recoverPass';
+$route['alterarsenha/(:any)'] = 'login/alterarMinhasenha/$1';
+$route['alterarnovasenha'] = 'login/alterarNovaSenha';

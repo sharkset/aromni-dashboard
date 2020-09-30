@@ -46,20 +46,20 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Aromni</p>
+            <p class="loader__label">Aroma Spot</p>
         </div>
     </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-
+    
     <section id="wrapper">
         <div class="overlay overlay-bg" style="background-image:url(<?= base_url('template/assets/images/background/login-register.jpg'); ?>);"></div>
         <div class="login-register">
             <div class="login-box card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material" id="loginform" action="<?= base_url('verificarlogin'); ?>" method="POST">
-                        <h3 class="text-center m-b-20">Aromni</h3>
+                    <form class="form-horizontal form-material" id="loginform" action="<?= base_url('alterarnovasenha'); ?>" method="POST">
+                        <h3 class="box-title m-b-20">Crie uma nova senha</h3>
                         <?php
                             if($msg = get_msg()):
                                 echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>'.$msg.
@@ -68,50 +68,18 @@
                         ?>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" name="email" type="email" required="" placeholder="E-mail"> </div>
+                                <input class="form-control" type="password" required="" name="password" placeholder="Digite sua nova senha">
+                                <input class="form-control" type="hidden" name="hash" required="" value="<?= $hash; ?>" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" name="senha" type="password" required="" placeholder="Senha"> </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Lembrar-me</label>
-                                    </div> 
-                                    <div class="ml-auto">
-                                        <a href="javascript:void(0)" id="to-recover" class="text-muted"><i class="fas fa-lock m-r-5"></i> Esqueceu a senha?</a> 
-                                    </div>
-                                </div>
+                                <input class="form-control" type="password" required="" name="cpassword" placeholder="Confirme sua nova senha">
                             </div>
                         </div>
-                        <div class="form-group text-center">
-                            <div class="col-xs-12 p-b-20">
-                                <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Entrar</button>
-                            </div>
-                        </div>
-                        <!--<div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                Novo por aqui? <a href="pages-register.html" class="text-info m-l-5"><b>Cadastre-se</b></a>
-                            </div>
-                        </div>-->
-                    </form>
-                    <form class="form-horizontal" id="recoverform" action="<?= base_url('recuperarsenha'); ?>" method="POST">
-                        <div class="form-group ">
+                        <div class="form-group text-center p-b-10">
                             <div class="col-xs-12">
-                                <h3>Recuperar Senha</h3>
-                                <p class="text-muted">Digite seu e-mail e receba as instruções por ele ao clicar em resetar </p>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <input class="form-control" type="text" required="required" name="email" placeholder="Email"> </div>
-                        </div>
-                        <div class="form-group text-center m-t-20">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Resetar</button>
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Alterar</button>
                             </div>
                         </div>
                         <div class="form-group row m-t-30 m-b-0 mx-auto">
@@ -126,9 +94,7 @@
                 </div>
             </div>
         </div>
-
     </section>
-    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

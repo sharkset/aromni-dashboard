@@ -10,8 +10,8 @@
     $this->load->view('app/estrutura/menu_top');
     $this->load->view('app/estrutura/menu_lateral');
 
-    // CONTEUDO
-    $this->load->view('app/fragmentos/dashboard/content');
+    // CONTEUDO PROFILE
+    $this->load->view('app/fragmentos/profile/content');
 
     // FOOTER
     $this->load->view('app/estrutura/footer');
