@@ -16,22 +16,91 @@ class Api extends CI_Controller
         $this->load->model('upload_model', '', true);
         $this->load->library('upload');
     }
-
-    public function teste()
+    protected function dadosConta()
     {
-        $this->load->view('app/estrutura/request');
+        // Busca no DB os dados do usuário logado na sessão
+        $query_data = $this->login_model->getById($this->session->userdata('id'));
+        $data = array(
+            'nome_conta' => reduzirNome($query_data->nome_pessoas, 15),
+            'nome_completo' => $query_data->nome_pessoas,
+            'foto' => verificaFoto($query_data->foto_pessoas),
+            'expiracao_conta' => $query_data->dataExpiracao,
+            'email' => $query_data->email,
+            'data_cadastro' => $query_data->dataCadastro,
+            'genero' => $query_data->sexo_pessoas,
+            'nascimento' => $query_data->nascimento_pessoas,
+            'cidade' => $query_data->cidade_pessoas,
+            'estado' => $query_data->estado_pessoas,
+            'celular' => $query_data->celular_pessoas,
+        );
+
+        return $data;
+    }
+    public function dispositivos()
+    {
+        // Definições de permissao ACL
+        executarPermissaoCliente();
+
+        // Dados da conta
+        $data['usuario'] = $this->dadosConta();
+
+        //Titulo da pagina
+        $data['title_page'] = "Aromni - Dispositivos";
+
+        if($this->Eugenio_Things_Return() == array("message" => "Forbidden")):
+            $msg = array('result' => false, 'message' => 'Nenhum dispositivo foi encontrado ou retornou 403 Forbidden');
+            $this->session->set_flashdata('error', $msg);
+            redirect('dashboard');
+        else:
+            $data['devices'] = $this->Eugenio_Things_Return();
+        endif;
+        
+
+
+        $this->load->view('app/paginas/dispositivos', $data);
     }
 
+    public function device_id($id = NULL)
+    { 
+        // Definições de permissao ACL
+        executarPermissaoCliente();
+
+        if($this->Eugenio_Things_ID_Return($id)->name == "Error" OR $this->Eugenio_Things_ID_Return($id)->message == "Forbidden"):
+            $msg = array('result' => false, 'message' => 'O dispositivo não esta ativo ou retornou 403 Forbidden');
+            $this->session->set_flashdata('error', $msg);
+            redirect('dashboard');
+        endif;
+
+        // Dados da conta
+        $data['usuario'] = $this->dadosConta();
+
+        $data['title_page'] = "Aromni - Dispositivos";
+
+        $data['device_info'] = $this->Eugenio_Things_ID_Return($id);
+
+        $this->load->view('app/paginas/device_id', $data);
+    }
+
+    // Credenciais da Application criada no Eugenio.io
     private function Eugenio_Credenciais()
     {
         $api = array(
             'apikey: 1J0Uip9R4agRfEg0SZjAGV1VXVsNzpW6', //Key da API do Eugenio
+            //'X-Tenant: tenant1600910450731',
             'Content-Type: application/json',
         );
 
         return $api;
     }
 
+    // Endpoint do Eugenio.io
+    private function Eugenio_Endpoint_URL($slug)
+    {
+        $url = "https://portal.stg.eugenio.io/api/v1/" . $slug; // Endereço da API
+        return $url;
+    }
+
+    // Conecta com o Eugenio.io API
     private function Eugenio_Connect($metodo, $url, $data, $api){
         $curl = curl_init();
         switch ($metodo){
@@ -61,17 +130,41 @@ class Api extends CI_Controller
         if(!$resultado){die("A conexão falhou");}
         curl_close($curl);
 
-        return $resultado;
+        return json_decode($resultado);
     }
 
-    public function Eugenio_Devices_Return()
+    // Funções de retorno
+    // Lista os dispositivos
+    protected function Eugenio_Devices_Return()
     {
         $api = $this->Eugenio_Credenciais();
-        $device_id = "639d1942-6dab-45f1-aede-a3ac6d91a83e";
-        $endpoint = 'things/'.$device_id.'/invoke';
-        $url = "https://portal.stg.eugenio.io/api/v1/" . $endpoint;
+        $url = $this->Eugenio_Endpoint_URL("devices");
         $data = [];
 
-        echo "<pre>".print_r($this->Eugenio_Connect("GET", $url, $data, $api))."</pre>";
+        return $this->Eugenio_Connect("GET", $url, $data, $api);
+    }
+
+    // Lista os dispositivos com metadados
+    protected function Eugenio_Things_Return()
+    {
+        $api = $this->Eugenio_Credenciais();
+        $url = $this->Eugenio_Endpoint_URL("things");
+        $data = [
+            "limit" => 100,
+            "offset" => 0
+        ];
+
+        return $this->Eugenio_Connect("GET", $url, $data, $api);
+    }
+
+    // Lista o dispositivo especifico
+    protected function Eugenio_Things_ID_Return($device_id)
+    {
+        $api = $this->Eugenio_Credenciais();
+        $endpoint = 'things/'.$device_id."/".'invoke';
+        $url = $this->Eugenio_Endpoint_URL($endpoint);
+        $data = [];
+
+        return $this->Eugenio_Connect("GET", $url, $data, $api);
     }
 }

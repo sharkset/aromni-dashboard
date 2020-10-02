@@ -32,6 +32,10 @@
                 </li>
 
                 <li> 
+                    <a class="waves-effect waves-dark" href="<?= base_url('dispositivos'); ?>" aria-expanded="false"><i class="ti-light-bulb"></i><span class="hide-menu">Dispositivos </span></a>
+                </li>
+
+                <li> 
                     <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="ti-pie-chart"></i><span class="hide-menu">Relatórios </span></a>
                 </li>
 

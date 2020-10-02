@@ -1,7 +1,7 @@
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="<?= base_url('dashboard'); ?>">
                 <!--<img src="<?= base_url('template/assets/images/logo-icon.png'); ?>" alt="AromaSpot" class="dark-logo" />-->
                 <img width="190px" src="<?= base_url('template/assets/images/logo.png'); ?>" alt="Aromni" class="light-logo" />
                 <span>

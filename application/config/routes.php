@@ -54,11 +54,15 @@ $route['404_override'] = 'errors/error404';
 $route['translate_uri_dashes'] = FALSE;
 
 /* APP */
+$route['dashboard'] = 'dashboard'; // Pagina inicial
+$route['profile'] = 'profile/index'; // Pagina de perfil
+$route['dispositivos'] = 'api/dispositivos'; // Pagina de dispositivos
+$route['dispositivos/device_id/(:any)'] = 'api/device_id/$1';
+
+/** LOGIN */
+$route['verificarlogin'] = 'login/verificarLogin'; // autenticação de login
 $route['login'] = 'login/index'; // Pagina inicial
 $route['login/sair'] = 'login/sair'; // Logout
-$route['dashboard'] = 'dashboard'; // Pagina inicial
-$route['profile'] = 'profile/index'; // Pagina inicial
-$route['verificarlogin'] = 'login/verificarLogin'; // autenticação de login
 
 /** RECUPERAR SENHA */
 $route['recuperarsenha'] = 'login/recoverPass';

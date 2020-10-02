@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Aroma Spot - Um projeto Eugenio Chalenge da natura">
     <meta name="author" content="Francisco Geneuto">
@@ -40,26 +40,20 @@
 </head>
 
 <body class="skin-default card-no-border">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Aromni</p>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
 
     <section id="wrapper">
-        <div class="overlay overlay-bg" style="background-image:url(<?= base_url('template/assets/images/background/login-register.jpg'); ?>);"></div>
+        <!--<div class="overlay overlay-bg" style="background-image:url(<?=  base_url('template/assets/images/background/login-register.jpg'); ?>);"></div>-->
         <div class="login-register">
             <div class="login-box card">
                 <div class="card-body">
                     <form class="form-horizontal form-material" id="loginform" action="<?= base_url('verificarlogin'); ?>" method="POST">
-                        <h3 class="text-center m-b-20">Aromni</h3>
+                        <div class="logo" style="text-align: center;"><img style="text-align: center; width:200px" src="<?= base_url('template/assets/images/logo.png'); ?>" alt="Aromni" class="light-logo" /></div>
                         <?php
                             if($msg = get_msg()):
                                 echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>'.$msg.
@@ -92,11 +86,6 @@
                                 <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Entrar</button>
                             </div>
                         </div>
-                        <!--<div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                Novo por aqui? <a href="pages-register.html" class="text-info m-l-5"><b>Cadastre-se</b></a>
-                            </div>
-                        </div>-->
                     </form>
                     <form class="form-horizontal" id="recoverform" action="<?= base_url('recuperarsenha'); ?>" method="POST">
                         <div class="form-group ">
@@ -118,9 +107,6 @@
                             <div class="col-sm-6">
                                 <a href="<?=base_url('login');?>"><i class="fa fa-home m-r-5"></i> Voltar para o login</a>
                             </div>
-                            <!--<div class="col-sm-6">
-                                <a href="<?=base_url();?>"><i class="fa fa-globe m-r-5"></i> Voltar para o site</a>
-                            </div>-->
                         </div>
                     </form>
                 </div>
@@ -129,12 +115,6 @@
 
     </section>
     
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
     <script src="<?= base_url('template/assets/node_modules/jquery/jquery-3.2.1.min.js'); ?>"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?= base_url('template/assets/node_modules/popper/popper.min.js'); ?>"></script>
@@ -150,9 +130,7 @@
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
         });
-        // ============================================================== 
-        // Login and Recover Password 
-        // ============================================================== 
+
         $('#to-recover').on("click", function() {
             $("#loginform").slideUp();
             $("#recoverform").fadeIn();
