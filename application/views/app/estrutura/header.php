@@ -21,6 +21,15 @@
     <link href="<?= base_url('template/dist/css/pages/dashboard2.css'); ?>" rel="stylesheet">
     <!-- toast CSS -->
     <link href="<?= base_url('template/assets/node_modules/toast-master/css/jquery.toast.css'); ?>" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="<?= base_url('template/assets/node_modules/chartist-js/dist/chartist.min.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('template/assets/node_modules/chartist-js/dist/chartist-init.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('template/assets/node_modules/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('template/assets/node_modules/css-chart/css-chart.css'); ?>" rel="stylesheet">
+
+    <!--This page css - Morris CSS -->
+    <link href="<?= base_url('template/assets/node_modules/morrisjs/morris.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('template/dist/css/pages/widget-page.css'); ?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

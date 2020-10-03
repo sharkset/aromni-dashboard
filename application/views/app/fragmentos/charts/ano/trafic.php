@@ -2,7 +2,7 @@
 <div class="col-lg-4">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Zona A</h5>
+            <h5 class="card-title">Ilha A</h5>
             <div class="stats-row m-t-20 m-b-20">
                 <div class="stat-item">
                     <h6>Crescimento Total</h6> <b>96.40%</b></div>
@@ -20,7 +20,7 @@
 <div class="col-lg-4">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Zona B</h5>
+            <h5 class="card-title">Ilha B</h5>
             <div class="stats-row m-t-20 m-b-20">
                 <div class="stat-item">
                     <h6>Crescimento Total</h6> <b>80.40%</b></div>
@@ -38,7 +38,7 @@
 <div class="col-lg-4">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Zona C</h5>
+            <h5 class="card-title">Ilha C</h5>
             <div class="stats-row m-t-20 m-b-20">
                 <div class="stat-item">
                     <h6>Crescimento Total</h6> <b>88.41%</b></div>

@@ -16,3 +16,5 @@
     // FOOTER
     $this->load->view('app/estrutura/footer');
 ?>
+</body>
+</html>
