@@ -13,10 +13,6 @@
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Configurações</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
                         <a href="<?= base_url('login/sair'); ?>" class="dropdown-item"><i class="fa fa-power-off"></i> Sair</a>
                         <!-- text-->
                     </div>
@@ -36,26 +32,14 @@
                 </li>
 
                 <li> 
-                    <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="ti-pie-chart"></i><span class="hide-menu">Relatórios </span></a>
+                    <a class="waves-effect waves-dark" href="<?= base_url('relatorios'); ?>" aria-expanded="false"><i class="ti-pie-chart"></i><span class="hide-menu">Relatórios </span></a>
                 </li>
 
                 <li class="nav-small-cap">--- SUPORTE</li>
                 <li>
-                    <a class="waves-effect waves-dark" href="https://syspro.club/aromni/site/" aria-expanded="false">
-                        <i class="fa fa-circle text-success"></i>
-                        <span class="hide-menu">Site</span>
-                    </a>
-                </li>
-                <li>
                     <a class="waves-effect waves-dark" href="https://portal.stg.eugenio.io/" target="_blank" aria-expanded="false">
-                        <i class="fa fa-circle text-info"></i>
+                        <i class="fa fa-circle text-primary"></i>
                         <span class="hide-menu">Eugenio</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="<?= base_url('login/sair'); ?>" aria-expanded="false">
-                        <i class="fa fa-circle text-danger"></i>
-                        <span class="hide-menu">Deslogar</span>
                     </a>
                 </li>
             </ul>
