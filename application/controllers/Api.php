@@ -65,11 +65,11 @@ class Api extends CI_Controller
         // Definições de permissao ACL
         executarPermissaoCliente();
 
-        if($this->Eugenio_Things_ID_Return($id)->name == "Error" OR $this->Eugenio_Things_ID_Return($id)->message == "Forbidden"):
+        /*if($this->Eugenio_Things_ID_Return($id)->name == "Error" OR $this->Eugenio_Things_ID_Return($id)->message == "Forbidden"):
             $msg = array('result' => false, 'message' => 'O dispositivo não esta ativo ou retornou 403 Forbidden');
             $this->session->set_flashdata('error', $msg);
             redirect('dashboard');
-        endif;
+        endif;*/
 
         // Dados da conta
         $data['usuario'] = $this->dadosConta();
@@ -77,8 +77,14 @@ class Api extends CI_Controller
         $data['title_page'] = "Aromni - Dispositivos";
 
         $data['device_info'] = $this->Eugenio_Things_ID_Return($id);
+        $data['device_query'] = $this->Eugenio_DataQuery_Return($id, 'aromni_schema');
 
         $this->load->view('app/paginas/device_id', $data);
+    }
+
+    public function invoke_id($id = NULL)
+    {
+        print_r($this->Eugenio_ThingsInvoke_ID_Return($id));
     }
 
     // Credenciais da Application criada no Eugenio.io
@@ -161,10 +167,36 @@ class Api extends CI_Controller
     protected function Eugenio_Things_ID_Return($device_id)
     {
         $api = $this->Eugenio_Credenciais();
-        $endpoint = 'things/'.$device_id."/".'invoke';
+        $endpoint = 'things/'.$device_id;
         $url = $this->Eugenio_Endpoint_URL($endpoint);
         $data = [];
 
         return $this->Eugenio_Connect("GET", $url, $data, $api);
+    }
+
+    // Executa comando POST invoke
+    protected function Eugenio_ThingsInvoke_ID_Return($device_id)
+    {
+        $api = $this->Eugenio_Credenciais();
+        $endpoint = 'things/'.$device_id.'/invoke';
+        $url = $this->Eugenio_Endpoint_URL($endpoint);
+        $data = array(
+            'method: ping',
+            'timeout: 10'
+        );
+
+        return $this->Eugenio_Connect("POST", $url, $data, $api);
+    }
+
+    // Executa comando POST invoke
+    protected function Eugenio_DataQuery_Return($device_id, $schema)
+    {
+        $api = $this->Eugenio_Credenciais();
+        $query = "SELECT * FROM ".$schema." WHERE deviceid = '".$device_id."' ORDER BY _eugenio_created_at DESC";
+        $endpoint = 'data/query?sql='.$query;
+        $url = $this->Eugenio_Endpoint_URL($endpoint);
+        $data = [];
+
+        return $this->Eugenio_Connect("POST", $url, $data, $api);
     }
 }

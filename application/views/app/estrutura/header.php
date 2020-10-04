@@ -16,7 +16,7 @@
     <!--c3 CSS -->
     <link href="<?= base_url('template/dist/css/pages/easy-pie-chart.css'); ?>" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url('template/dist/css/style.min.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('template/dist/css/style.css'); ?>" rel="stylesheet">
     <!-- Dashboard 2 Page CSS -->
     <link href="<?= base_url('template/dist/css/pages/dashboard2.css'); ?>" rel="stylesheet">
     <!-- toast CSS -->
