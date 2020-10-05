@@ -1,7 +1,3 @@
-
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -37,7 +33,7 @@
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 
 
@@ -45,7 +41,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Time
 
 <a href="https://github.com/geneuto/">@Francisco Geneuto - Desenvolvedor</a><br>
-<a href="https://github.com/denisAlberto/">@Denis Alberto - Desenvolver IOT</a><br>
+<a href="https://github.com/denisAlberto/">@Denis Alberto - Desenvolvedor IOT</a><br>
 <a href="https://www.linkedin.com/in/luckmattos/">@Lucas Mattos - Ux Design</a><br>
 <a href="https://www.linkedin.com/in/sergiosilva-business/">@Sérgio Silva - Business</a><br>
 <a href="https://eueomundo.com/">@Felipe Rafael - Comunicação</a>
@@ -54,13 +50,6 @@ Dashboard Project Link: [https://github.com/geneuto/aromni](https://github.com/g
 Hardware Project Link: [https://github.com/denisAlberto/Aromni](https://github.com/denisAlberto/Aromni)
 
 
-[contributors-url]: https://github.com/geneuto/aromni/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/geneuto/aromni/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/geneuto/aromni/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/geneuto/aromni/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
 [license-url]: https://github.com/geneuto/aromni/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
