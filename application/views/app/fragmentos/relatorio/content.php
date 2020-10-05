@@ -35,6 +35,7 @@
                                 </thead>
                                 <tbody>
                                     <?php 
+                                    if($relatorio):
                                         foreach($relatorio as $relatorios): ?>
                                     <tr>
                                         <td><?= $relatorios['Essencias']; ?></td>
@@ -43,7 +44,10 @@
                                         <td><?= $relatorios['Regiao']; ?></td>
                                         <td><?= $relatorios['lastUpdate']; ?></td>
                                     </tr>
-                                    <?php endforeach; ?>
+                                    <?php 
+                                    endforeach; 
+                                    endif;
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
