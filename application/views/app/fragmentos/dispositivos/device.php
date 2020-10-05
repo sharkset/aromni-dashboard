@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-md-6 col-lg-6 col-xlg-6">
+                            <div class="col-md-4 col-lg-4 col-xlg-4">
                                 <div class="card">
                                     <div class="box bg-primary text-center">
                                         <h1 class="font-light text-white"><?php 
@@ -42,7 +42,27 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-lg-6 col-xlg-6">
+                            <div class="col-md-4 col-lg-4 col-xlg-4">
+                                <div class="card">
+                                    <div class="box bg-success text-center">
+                                        <h1 class="font-light text-white"><?php 
+                                        $i = 0; 
+                                        setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                                        date_default_timezone_set('America/Sao_Paulo');
+                                        if($device_query):
+                                            foreach($device_query as $query):
+                                                if($query->heartbeat == FALSE AND date('d-m-Y', $query->datetime) == date('d-m-Y', strtotime('today'))):
+                                                $i++;
+                                                endif;
+                                            endforeach;
+                                        endif; echo $i;
+                                        ?></h1>
+                                        <h6 class="text-white">Acionamentos hoje</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-lg-4 col-xlg-4">
                                 <div class="card">
                                     <div class="box bg-info text-center">
                                         <h1 class="font-light text-white"><?= $device_info->tags->deviceFrequency == NULL? "0": $device_info->tags->deviceFrequency ;?> <i style="font-size: 12px;">ms</i></h1>
