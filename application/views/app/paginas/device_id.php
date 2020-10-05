@@ -16,5 +16,30 @@
     // FOOTER
     $this->load->view('app/estrutura/footer');
 ?>
+<script>
+ $(function() {
+   setTime();
+   function setTime() {
+      var string = "<?php 
+            $date = new DateTime();
+
+            if($device_query):
+                foreach($device_query as $query): 
+                    if($query->heartbeat):
+                        echo "Modo Automatico acionado em ".date('d/m/Y H:m:s', $query->datetime)."<br />";
+                    else:
+                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('d/m/Y H:m:s', $query->datetime)."</b><br />";
+                    endif;
+                endforeach;
+            else:
+                $msg = "Não foi encontrado nenhum log para este dispositivo!";
+                echo $msg;
+            endif;
+        ?>";
+      setTimeout(setTime, 3000);
+      $('#setLog').html(string);
+   }
+ });
+</script>
 </body>
 </html>

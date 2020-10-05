@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-md-12 col-lg-12 col-xlg-12">
+                            <div class="col-md-6 col-lg-6 col-xlg-6">
                                 <div class="card">
                                     <div class="box bg-primary text-center">
                                         <h1 class="font-light text-white"><?php 
@@ -41,6 +41,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 col-lg-6 col-xlg-6">
+                                <div class="card">
+                                    <div class="box bg-info text-center">
+                                        <h1 class="font-light text-white"><?= $device_info->tags->deviceFrequency == NULL? "0": $device_info->tags->deviceFrequency ;?> <i style="font-size: 12px;">ms</i></h1>
+                                        <h6 class="text-white">Tempo de resposta</h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -53,12 +62,14 @@
                         <div class="card-text desc">
                             <b>ID do dispositivo:</b> <?php echo $device_info->deviceId; ?><br /><br />
                             <b>Organização do dispositivo:</b> <?php echo $device_info->tags->tenantId; ?><br /><br />
-                            <b>Status:</b> <?php echo $device_info->connectionState; ?><br /><br />
+                            <b>Status:</b> <?php echo $device_info->connectionState == "Disconnected"? "<i style='color:#f45f5f'>Desconectado</i>" : "<i style='color:#22cc77'>Conectado</i>"; ?><br /><br />
                             <b>Criado em:</b>
                             <?php echo date('d/m/Y H:m:s', strtotime($device_info->tags->created)); ?><br /><br />
                             <b>Última atividade em:</b>
                             <?php echo date('d/m/Y H:m:s', strtotime($device_info->lastActivityTime)); ?><br /><br />
                         </div>
+
+                        <a class="btn btn-primary" href="#" onclick="window.location.reload()">Atualizar</a>
 
                     </div>
                 </div>
@@ -70,25 +81,7 @@
                         <h4 class="card-title">Logs</h4>
                     </div>
                     <div class="card-body">
-                        <div style="height:450px;overflow-y:scroll;">
-                            <?php 
-                            $date = new DateTime();
-
-                            if($device_query):
-                                foreach($device_query as $query): 
-                                    if($query->heartbeat):
-                                        echo "Modo Automatico acionado em ".date('d/m/Y H:m:s', $query->datetime)."<br />";
-                                    else:
-                                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('d/m/Y H:m:s', $query->datetime)."</b><br />";
-                                    endif;
-                                endforeach;
-                            else:
-                                $msg = "Não foi encontrado nenhum log para este dispositivo!";
-                                echo $msg;
-                            endif;
-                            ?>
-                        </div>
-
+                        <div id="setLog" style="height:450px;overflow-y:scroll;"></div>
                     </div>
                 </div>
             </div>
