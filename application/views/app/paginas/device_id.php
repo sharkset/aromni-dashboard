@@ -18,25 +18,19 @@
 ?>
 <script>
  $(function() {
-   setTime();
-   function setTime() {
-      var string = "<?php 
-            if($device_query):
-                foreach($device_query as $query): 
-                    if($query->heartbeat):
-                        echo "Modo Automatico acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."<br />";
-                    else:
-                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."</b><br />";
-                    endif;
-                endforeach;
-            else:
-                $msg = "Não foi encontrado nenhum log para este dispositivo!";
-                echo $msg;
-            endif;
-        ?>";
-      setTimeout(setTime, 3000);
-      $('#setLog').html(string);
-   }
+    var spinner = '<div class="loader__figure"></div>';
+    $('#setLog').html(spinner);
+    setInterval(function(){ 
+    $.ajax({
+        type: 'GET',
+        url: '<?= base_url()."api/api_things/".$device_info->deviceId; ?>',
+        dataType: 'html',
+        success: function (response) {
+            $('#setLog').html(response);
+        },
+    })
+}, 8000);
+    
  });
 </script>
 </body>

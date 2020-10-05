@@ -60,6 +60,7 @@ $route['dispositivos'] = 'api/dispositivos'; // Pagina de dispositivos
 $route['relatorios'] = 'relatorio/index'; // Pagina de dispositivos
 $route['dispositivos/device_id/(:any)'] = 'api/device_id/$1';
 $route['api/invoke/(:any)'] = 'api/invoke_id/$1';
+$route['api/api_things/(:any)'] = 'api/api_things/$1';
 
 /** LOGIN */
 $route['verificarlogin'] = 'login/verificarLogin'; // autenticação de login

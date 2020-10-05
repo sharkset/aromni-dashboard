@@ -17,6 +17,34 @@ class Api extends MY_Controller
         $this->load->library('upload');
     }
 
+    public function api_things($id = null)
+    {
+        // Definições de permissao ACL
+        executarPermissaoCliente();
+
+        setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        date_default_timezone_set('America/Sao_Paulo');
+
+        if(!$id == NULL):
+            $device_query = $this->Eugenio_DataQuery_Return($id, 'aromni_schema');
+            if(isset($device_query)):
+                foreach($device_query as $query): 
+                    if($query->heartbeat):
+                        echo "Modo Automatico acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."<br />";
+                    else:
+                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."</b><br />";
+                    endif;
+                endforeach;
+            else:
+                $msg = "Não foi encontrado nenhum log para este dispositivo!";
+                echo $msg;
+            endif;
+        else:
+            return false;
+        endif;
+
+    }
+
     public function dispositivos()
     {
         // Definições de permissao ACL
@@ -64,6 +92,9 @@ class Api extends MY_Controller
 
     public function invoke_id($id = NULL)
     {
+        // Definições de permissao ACL
+        executarPermissaoCliente();
+        
         print_r($this->Eugenio_ThingsInvoke_ID_Return($id));
     }
     
