@@ -20,6 +20,7 @@
     
 [![Product Name Screen Shot][product-screenshot]](https://syspro.club/aromni/)
 <br /><br />
+    <img src="template/ss_aromni02.png" alt="Dispositivo Aromni" title="Dispositivo Aromni" /><br /><br />
     <a href="https://www.syspro.club/aromni/">Ver a Dashboard</a>
     ·
     <a href="https://github.com/denisAlberto/Aromni">Hardware Repo</a>
