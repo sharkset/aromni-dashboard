@@ -29,7 +29,7 @@
             $('#setLog').html(response);
         },
     })
-}, 8000);
+}, 10000);
     
  });
 </script>

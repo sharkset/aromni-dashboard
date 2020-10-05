@@ -27,7 +27,7 @@ class Api extends MY_Controller
 
         if(!$id == NULL):
             $device_query = $this->Eugenio_DataQuery_Return($id, 'aromni_schema');
-            if(isset($device_query)):
+            if($device_query):
                 foreach($device_query as $query): 
                     if($query->heartbeat):
                         echo "Modo Automatico acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."<br />";
@@ -94,7 +94,7 @@ class Api extends MY_Controller
     {
         // Definições de permissao ACL
         executarPermissaoCliente();
-        
+
         print_r($this->Eugenio_ThingsInvoke_ID_Return($id));
     }
     
