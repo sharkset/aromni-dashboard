@@ -14,7 +14,12 @@
                 </div>
             </div>
         </div>
-
+        <?php
+            if($msg = get_msg()):
+                echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>'.$msg.
+                '</div>';
+            endif; 
+        ?>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -90,7 +95,7 @@
                         </div>
 
                         <a class="btn btn-primary" href="#" onclick="window.location.reload()">Atualizar</a>
-
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#cadastrarBanco">Cadastrar nos relatórios</button>
                     </div>
                 </div>
             </div>
@@ -108,5 +113,42 @@
 
         </div>
 
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="cadastrarBanco" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style=" background:#3c4452">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Cadastrar dispositivo nos relatórios</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+                <form action="<?= base_url('api/cadastarDeviceDB'); ?>" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="deviceid" class="control-label">DeviceID:</label>
+                            <input value="<?= $device_info->deviceId; ?>" disabled type="text" class="form-control" id="deviceid">
+                            <input value="<?= $device_info->deviceId; ?>" type="hidden" class="form-control" name="deviceid">
+                        </div>
+                        <div class="form-group">
+                            <label for="loja" class="control-label">Loja:</label>
+                            <input type="text" class="form-control" id="loja" name="loja" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="essencia" class="control-label">Essência (Produto):</label>
+                            <input type="text" class="form-control" id="essencia" name="essencia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regiao" class="control-label">Região:</label>
+                            <input type="text" class="form-control" id="regiao" name="regiao" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </form>
+        </div>
     </div>
 </div>

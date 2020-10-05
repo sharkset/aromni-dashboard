@@ -97,5 +97,48 @@ class Api extends MY_Controller
 
         print_r($this->Eugenio_ThingsInvoke_ID_Return($id));
     }
+
+    public function cadastarDeviceDB()
+    {
+        // Definições de permissao ACL
+        executarPermissaoCliente();
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('deviceid', 'Device ID', 'required|trim');
+        $this->form_validation->set_rules('loja', 'Loja', 'required|trim');
+        $this->form_validation->set_rules('essencia', 'Essencia', 'required|trim');
+        $this->form_validation->set_rules('regiao', 'Regiao', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            set_msg(validation_errors());
+            redirect(base_url('dispositivos'));
+        } else {
+            $dados = array(
+                'deviceID' => $this->input->post('deviceid'),
+                'loja' => $this->input->post('loja'),
+                'Essencias' => $this->input->post('essencia'),
+                'Regiao' => $this->input->post('regiao')
+            );
+
+            if(!$this->login_model->check('relatorios', 'deviceID', $dados['deviceID'])){
+                $retorno = $this->login_model->add('relatorios', $dados);
+
+                if($retorno):
+                    $json = array('result' => 'true', 'message' => 'Dispositivo cadastrado no banco!');
+                    $this->session->set_flashdata('success', $json);
+                    log_info('Usuario ID:'.$this->session->userdata('id').' inseriu o dispositivo na DB->relatorios');
+                    redirect(base_url() . 'dispositivos');
+                else:
+                    $json = array('result' => 'false', 'message' => 'Ops, algo deu errado!');
+                    $this->session->set_flashdata('error', $json);
+                    redirect(base_url() . 'dispositivos');
+                endif;
+            }else{
+                $json = array('result' => 'false', 'message' => 'Dispositivo já esta cadastrado!');
+                $this->session->set_flashdata('warning', $json);
+                redirect(base_url() . 'dispositivos');
+            }
+        }
+
+    }
     
 }

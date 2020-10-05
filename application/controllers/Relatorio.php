@@ -22,19 +22,34 @@ class Relatorio extends MY_Controller {
         $data['title_page'] = "Aromni - Relatórios";
 
         // Busca no DB os dados do usuário logado na sessão
-        $query_data = $this->login_model->getById($this->session->userdata('id'));
-        $data['usuario'] = array(
-            'nome_conta' => reduzirNome($query_data->nome_pessoas, 15),
-            'foto' => verificaFoto($query_data->foto_pessoas),
-            'expiracao_conta' => $query_data->dataExpiracao,
-            'data_cadastro' => $query_data->dataCadastro,
-            'genero' => $query_data->sexo_pessoas,
-            'nascimento' => $query_data->nascimento_pessoas,
-            'cidade' => $query_data->cidade_pessoas,
-            'estado' => $query_data->estado_pessoas,
-        );
+        $data['usuario'] = $this->dadosConta();
 
-        $data['relatorio'] = $this->login_model->ver('relatorios');
+        $dadosRelatorio = $this->login_model->ver('relatorios');
+
+        foreach($dadosRelatorio as $dados):
+            $device_query = $this->Eugenio_DataQuery_Return($dados->deviceID, 'aromni_schema');
+            if($device_query):
+                $i = 1;
+                foreach($device_query as $query): 
+                    if(!$query->heartbeat):
+                        $ativacoes[] = $i++;
+                    endif;
+                endforeach;
+            else:
+                $ativacoes[] = 0;
+            endif;
+
+            $relatorio[] = array(
+                "deviceID" => $dados->deviceID,
+                "Essencias" => $dados->Essencias,
+                "Loja" => $dados->Loja,
+                "Regiao" => $dados->Regiao,
+                "Ativacoes" => $ativacoes,
+                "lastUpdate" => @date('d/m/Y H:m:s', strtotime($this->Eugenio_Things_ID_Return($dados->deviceID)->lastActivityTime))
+            );
+        endforeach;
+
+        $data['relatorio'] = $relatorio;
 
         $this->load->view('app/paginas/relatorio', $data);
     }

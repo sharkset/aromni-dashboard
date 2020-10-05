@@ -97,6 +97,14 @@ class Login_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    function check($table, $fieldID, $ID)
+    {
+        $this->db->select('*');
+        $this->db->where($fieldID, $ID);
+        $this->db->from($table);
+        return $this->db->get()->result();
+    }
+
     function edit($table, $data, $fieldID, $ID)
     {
         $this->db->where($fieldID, $ID);

@@ -21,6 +21,9 @@
                     <div class="card-body">
                         <h4 class="card-title">Histórico dos dispositivos</h4>
                         <h6 class="card-subtitle">Exporte esse relatório para qualquer ferramenta.</h6>
+                        <pre>
+                            <?php print_r($relatorio); ?>
+                        </pre>
                         <div class="table-responsive m-t-40">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered"
                                 cellspacing="0" width="100%">
@@ -37,11 +40,11 @@
                                     <?php 
                                         foreach($relatorio as $relatorios): ?>
                                     <tr>
-                                        <td><?= $relatorios->Essencias; ?></td>
-                                        <td><?= $relatorios->Ativacoes; ?></td>
-                                        <td><?= $relatorios->loja; ?></td>
-                                        <td><?= $relatorios->Regiao; ?></td>
-                                        <td><?= date('d/m/Y h:m:s', strtotime($relatorios->Essencias)); ?></td>
+                                        <td><?= $relatorios['Essencias']; ?></td>
+                                        <td><?= array_pop($relatorios['Ativacoes']); ?></td>
+                                        <td><?= $relatorios['Loja']; ?></td>
+                                        <td><?= $relatorios['Regiao']; ?></td>
+                                        <td><?= $relatorios['lastUpdate']; ?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
