@@ -37,7 +37,7 @@
                                             endforeach;
                                         endif; echo $i;
                                         ?></h1>
-                                        <h6 class="text-white">Acionamentos hoje</h6>
+                                        <h6 class="text-white">Total de acionamentos</h6>
                                     </div>
                                 </div>
                             </div>

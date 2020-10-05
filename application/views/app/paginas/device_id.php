@@ -21,14 +21,12 @@
    setTime();
    function setTime() {
       var string = "<?php 
-            $date = new DateTime();
-
             if($device_query):
                 foreach($device_query as $query): 
                     if($query->heartbeat):
-                        echo "Modo Automatico acionado em ".date('d/m/Y H:m:s', $query->datetime)."<br />";
+                        echo "Modo Automatico acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."<br />";
                     else:
-                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('d/m/Y H:m:s', $query->datetime)."</b><br />";
+                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('l dS \o\f F Y h:i:s A', $query->datetime)."</b><br />";
                     endif;
                 endforeach;
             else:
