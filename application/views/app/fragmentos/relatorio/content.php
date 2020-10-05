@@ -21,9 +21,6 @@
                     <div class="card-body">
                         <h4 class="card-title">Histórico dos dispositivos</h4>
                         <h6 class="card-subtitle">Exporte esse relatório para qualquer ferramenta.</h6>
-                        <pre>
-                            <?php print_r($relatorio); ?>
-                        </pre>
                         <div class="table-responsive m-t-40">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered"
                                 cellspacing="0" width="100%">
