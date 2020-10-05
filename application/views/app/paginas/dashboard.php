@@ -19,7 +19,7 @@
                 <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                 <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
             </ul>
-            <b class="text-danger">MODO SIMULADO ATIVO</b>
+            <b class="text-danger">DASHBOARD NO MODO SIMULADO ATIVO</b>
             <ul class="navbar-nav my-lg-0">
                 <li class="nav-item right-side-toggle"> 
                     <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
