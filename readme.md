@@ -29,16 +29,25 @@
   </p>
 </p>
 
+## Instalação
 
+01 - Clone o repositório em seu servidor ou hospedagem;<br />
+02 - Importe o banco de dados para o seu SGBD de preferência, encontra-se dentro da pasta mysql/<br />
+03 - Dentro da pasta application/config/ altere os arquivos Config.php e Database.php<br />
+04 - Configure a API Key e o Endpoint do Eugenio dentro da pasta application/core no arquivo MY_Controller.php<br /><br />
 
-<!-- LICENSE -->
+## Outros
+
+<b>Linguagem:</b> PHP<br />
+<b>Banco de dados:</b> MySQL<br />
+<b>Framework:</b> CodeIgniter<br />
+
 ## License
 
 Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 
 
-<!-- CONTACT -->
 ## Time
 
 <a href="https://github.com/geneuto/">@Francisco Geneuto - Desenvolvedor</a><br>
