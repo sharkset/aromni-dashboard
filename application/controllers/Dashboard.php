@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller {
         // Definições de permissao ACL
         executarPermissaoCliente();
 
-        $data['title_page'] = "Aromni - Dashboard";
+        $data['title_page'] = "Aromni - Dashboard (dados simulados)";
 
         // Busca no DB os dados do usuário logado na sessão
         $query_data = $this->login_model->getById($this->session->userdata('id'));

@@ -60,7 +60,7 @@
                             </div> 
                         <?php else: ?>
                             <div class="status row">
-                                <a href="javascript:void(0)" class="btn btn-primary">Detalhes</a>
+                                <a href="<?= base_url('dispositivos/device_id/').$iot->deviceId; ?>" class="btn btn-primary">Detalhes</a>
                                 <div class="stado row"><div style="background-color: #92C97A;" class="circle"></div> <p style="color: #92C97A;;">Conectado</p></div>
                             </div> 
                         <?php endif; ?>

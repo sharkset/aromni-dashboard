@@ -18,24 +18,26 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="card-title"><?php echo $device_info->tags->deviceName; ?></h4>
+                    </div>
+                    <div class="card-body">
 
                         <div class="row">
-                            <div class="col-md-6 col-lg-6 col-xlg-2">
+                            <div class="col-md-12 col-lg-12 col-xlg-12">
                                 <div class="card">
                                     <div class="box bg-primary text-center">
-                                        <h1 class="font-light text-white">Null</h1>
+                                        <h1 class="font-light text-white"><?php 
+                                        $i = 0; 
+                                        if($device_query):
+                                            foreach($device_query as $query):
+                                                if($query->heartbeat == FALSE):
+                                                $i++;
+                                                endif;
+                                            endforeach;
+                                        endif; echo $i;
+                                        ?></h1>
                                         <h6 class="text-white">Acionamentos hoje</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-6 col-xlg-2">
-                                <div class="card">
-                                    <div class="box bg-cyan text-center">
-                                        <h1 class="font-light text-white">Null ms</h1>
-                                        <h6 class="text-white">Tempo de resposta</h6>
                                     </div>
                                 </div>
                             </div>
@@ -43,31 +45,51 @@
 
 
                         <style>
-                            .desc b {
-                                font-weight: bold;
-                            }
+                        .desc b {
+                            font-weight: bold;
+                        }
                         </style>
 
                         <div class="card-text desc">
+                            <b>ID do dispositivo:</b> <?php echo $device_info->deviceId; ?><br /><br />
                             <b>Organização do dispositivo:</b> <?php echo $device_info->tags->tenantId; ?><br /><br />
-                            <b>Criado em:</b> <?php echo date('d/m/Y H:m:s', strtotime($device_info->tags->created)); ?><br /><br />
-                            <b>Última atividade em:</b> <?php echo date('d/m/Y H:m:s', strtotime($device_info->lastActivityTime)); ?><br /><br />
-                            <b>ID do dispositivo:</b> <?php echo $device_info->deviceId; ?>
+                            <b>Status:</b> <?php echo $device_info->connectionState; ?><br /><br />
+                            <b>Criado em:</b>
+                            <?php echo date('d/m/Y H:m:s', strtotime($device_info->tags->created)); ?><br /><br />
+                            <b>Última atividade em:</b>
+                            <?php echo date('d/m/Y H:m:s', strtotime($device_info->lastActivityTime)); ?><br /><br />
                         </div>
 
                     </div>
                 </div>
             </div>
 
-
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="card-title">Logs</h4>
-                        <?php var_dump($device_query); ?>
                     </div>
+                    <div class="card-body">
+                        <div style="height:450px;overflow-y:scroll;">
+                            <?php 
+                            $date = new DateTime();
 
-                        <a type="submit" href="<?= base_url('api/invoke/'.$device_info->deviceId); ?>" class="btn btn-primary">Ping</a>
+                            if($device_query):
+                                foreach($device_query as $query): 
+                                    if($query->heartbeat):
+                                        echo "Modo Automatico acionado em ".date('d/m/Y H:m:s', $query->datetime)."<br />";
+                                    else:
+                                        echo "<b style='color:#7dc667'>Sensor heartbeat acionado em ".date('d/m/Y H:m:s', $query->datetime)."</b><br />";
+                                    endif;
+                                endforeach;
+                            else:
+                                $msg = "Não foi encontrado nenhum log para este dispositivo!";
+                                echo $msg;
+                            endif;
+                            ?>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 

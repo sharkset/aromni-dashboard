@@ -16,5 +16,8 @@
     // FOOTER
     $this->load->view('app/estrutura/footer');
 ?>
+<script type="text/javascript">
+    $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
+</script>
 </body>
 </html>

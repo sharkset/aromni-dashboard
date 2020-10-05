@@ -65,19 +65,20 @@ class Api extends CI_Controller
         // Definições de permissao ACL
         executarPermissaoCliente();
 
-        /*if($this->Eugenio_Things_ID_Return($id)->name == "Error" OR $this->Eugenio_Things_ID_Return($id)->message == "Forbidden"):
-            $msg = array('result' => false, 'message' => 'O dispositivo não esta ativo ou retornou 403 Forbidden');
-            $this->session->set_flashdata('error', $msg);
-            redirect('dashboard');
-        endif;*/
-
         // Dados da conta
         $data['usuario'] = $this->dadosConta();
 
         $data['title_page'] = "Aromni - Dispositivos";
 
         $data['device_info'] = $this->Eugenio_Things_ID_Return($id);
-        $data['device_query'] = $this->Eugenio_DataQuery_Return($id, 'aromni_schema');
+
+        if($this->Eugenio_DataQuery_Return($id, 'aromni_schema')){
+            $data['device_query'] = $this->Eugenio_DataQuery_Return($id, 'aromni_schema');
+        }else{
+            $msg = array("result" => false, "message" => "Nenhum histórico foi encontrado.");
+            $this->session->set_flashdata('warning', $msg);
+            $data['device_query'] = false;
+        }
 
         $this->load->view('app/paginas/device_id', $data);
     }
@@ -133,7 +134,9 @@ class Api extends CI_Controller
 
         // EXECUÇÃO:
         $resultado = curl_exec($curl);
-        if(!$resultado){die("A conexão falhou");}
+        if(!$resultado){
+            return false;
+        }
         curl_close($curl);
 
         return json_decode($resultado);
@@ -193,10 +196,12 @@ class Api extends CI_Controller
     {
         $api = $this->Eugenio_Credenciais();
         $query = "SELECT * FROM ".$schema." WHERE deviceid = '".$device_id."' ORDER BY _eugenio_created_at DESC";
-        $endpoint = 'data/query?sql='.$query;
+        $endpoint = 'data/query';
         $url = $this->Eugenio_Endpoint_URL($endpoint);
-        $data = [];
+        $data = [
+            "sql" => $query
+        ];
 
-        return $this->Eugenio_Connect("POST", $url, $data, $api);
+        return $this->Eugenio_Connect("GET", $url, $data, $api);
     }
 }
